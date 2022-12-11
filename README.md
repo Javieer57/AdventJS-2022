@@ -118,3 +118,75 @@ Cosas a tener en cuenta:
 - Las cajas no se pueden rotar ya que los elfos nos han dicho que la máquina no está preparada.
 - Las cajas pueden venir desordenadas de tamaño.
 - Las cajas no son siempre cuadradas, pueden ser rectangulares.
+
+## Reto 5
+
+Para no cansar a los renos, Papá Noel quiere dejar el máximo número de regalos haciendo el menor número posible de viajes.
+
+Tiene un array de ciudades donde cada elemento es el número de regalos que puede dejar allí. [12, 3, 11, 5, 7]. Por otro lado, el límite de regalos que caben en su saco. Y, finalmente, el número de ciudades máximo que sus renos pueden visitar.
+
+Como no quiere dejar una ciudad a medias, si no puede dejar todos los regalos que son de esa ciudad, no deja ninguno allí.
+
+Crea un programa que le diga la suma más alta de regalos que podría repartir teniendo en cuenta el máximo de regalos que puede transportar y el número máximo de ciudades que puede visitar:
+
+    const giftsCities = [12, 3, 11, 5, 7]
+    const maxGifts = 20
+    const maxCities = 3
+
+    // la suma más alta de regalos a repartir
+    // visitando un máximo de 3 ciudades
+    // es de 20: [12, 3, 5]
+
+    // la suma más alta sería [12, 7, 11]
+    // pero excede el límite de 20 regalos y tendría
+    // que dejar alguna ciudad a medias.
+
+    getMaxGifts(giftsCities, maxGifts, maxCities) // 20
+
+Si no se puede realizar ningún viaje que satisface los requerimientos, el resultado debe ser 0. Más ejemplos:
+
+    getMaxGifts([12, 3, 11, 5, 7], 20, 3) // 20
+    getMaxGifts([50], 15, 1) // 0
+    getMaxGifts([50], 100, 1) // 50
+    getMaxGifts([50, 70], 100, 1) // 70
+    getMaxGifts([50, 70, 30], 100, 2) // 100
+    getMaxGifts([50, 70, 30], 100, 3) // 100
+    getMaxGifts([50, 70, 30], 100, 4) // 100
+
+A tener en cuenta:
+
+- maxGifts >= 1
+- giftsCities.length >= 1
+- maxCities >= 1
+- El número de maxCities puede ser mayor a giftsCities.length
+
+## Reto 7
+
+En los almacenes de Papá Noel están haciendo inventario. Hay tres almacenes (que se representa cada uno como un Array). En cada almacén hay regalos.
+
+Nos han pedido que escribamos un programa que nos diga qué regalos hay que comprar para reponer en nuestros almacenes ahora que se acerca la Navidad. Un regalo se tiene que reponer cuando sólo hay stock en uno de los tres almacenes.
+
+Por ejemplo, si tenemos los siguientes almacenes:
+
+    const a1 = ['bici', 'coche', 'bici', 'bici']
+    const a2 = ['coche', 'bici', 'muñeca', 'coche']
+    const a3 = ['bici', 'pc', 'pc']
+
+    /* El almacén a1 tiene "bici" y "coche".
+    El almacén a2 tiene "coche", "bici" y "muñeca".
+    El almacén a3 tiene "bici" y "pc".
+
+    El regalo "muñeca" y "pc" sólo están en los almacenes a2 y a3 respectivamente.
+    */
+
+    const gifts = getGiftsToRefill(a1, a2, a3) // ['muñeca', 'pc']
+
+Como ves, los almacenes pueden tener el mismo regalo repetido varias veces. Pero, por más existencias que haya en un almacén, si no tenemos en los otros dos, debemos reponerlo para tener mejor distribución.
+
+📝 Summary
+
+1. Crea una función getGiftsToRefill que reciba tres Array como parámetros.
+2. La función debe devolver un Array con los regalos que hay que reponer.
+3. Un regalo se debe reponer cuando sólo hay stock en uno de los tres almacenes.
+4. Si no hay ningún regalo que reponer, la función debe devolver un Array vacío.
+5. Si hay más de un regalo que reponer, la función debe devolver un Array con todos los regalos que hay que reponer.
